@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 from util_funcs.pre_process import clean_data, load_model
 
 # load css file
-with open("styles.css", encoding='utf8') as f:
+with open("./styles.css", encoding='utf8') as f:
     css = f.read()
 
 # injecting css into the app
