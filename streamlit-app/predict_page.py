@@ -1,3 +1,4 @@
+import os
 from datetime import date
 
 import pandas as pd
@@ -7,7 +8,8 @@ from dateutil.relativedelta import relativedelta
 from util_funcs.pre_process import clean_data, load_model
 
 # load css file
-with open("./styles.css", encoding='utf8') as f:
+css_path = os.path.abspath('styles.css')
+with open(css_path, encoding='utf8') as f:
     css = f.read()
 
 # injecting css into the app
