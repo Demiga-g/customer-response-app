@@ -1,0 +1,59 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: local
+    hooks:
+    -   id: check-staged-only
+        name: Check only staged files
+        entry: |
+            bash -c '
+            staged_files=$(git diff --name-only --cached)
+            if [ -z "$staged_files" ]; then
+                exit 0
+            fi'
+            pre-commit run --files "$staged_files"
+        language: system
+        pass_filenames: false
+        always_run: true
+
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+        args: ['--maxkb=10240'] # 10MB limit
+
+
+- repo: https://github.com/pycqa/isort
+  rev: 5.13.2 # check version from pip file
+  hooks:
+  - id: isort
+    name: isort (python)
+    args: ["--profile", "black", "--length-sort"]
+
+
+-   repo: https://github.com/psf/black
+    rev: 24.8.0 # check version from pip file
+    hooks:
+    - id: black
+      language_version: python3.10 # check version from pip file
+
+
+- repo: local
+  hooks:
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: system # requires local installation of pylint
+      types: [python]
+      require_serial: true
+      args:
+        [
+          "-rn", # Only display messages
+          "-sn", # Don't display the score
+          "--recursive=y"
+
+        ]
