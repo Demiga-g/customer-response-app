@@ -1,4 +1,3 @@
-import os
 from datetime import date
 
 import pandas as pd
@@ -8,13 +7,22 @@ from dateutil.relativedelta import relativedelta
 
 from util_funcs.pre_process import load_model, clean_form_data
 
-# load css file
-css_path = os.path.abspath('styles.css')
-with open(css_path, encoding='utf8') as f:
-    css = f.read()
+styling_pred_output = """
+<style>
+    .pred-output {
+        font-size: 20px;
+        font-weight: bold;
+        color: #4fc921;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+"""
 
-# injecting css into the app
-st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+# inject the CSS into the app
+st.markdown(styling_pred_output, unsafe_allow_html=True)
 
 
 # load model and cache it
@@ -247,12 +255,14 @@ if submitted:
         # give prediction
         prediction = model.predict(df_clean.to_dict('records'))[0]
         if prediction == 1:
-            message = f"<span class='positive'>Customer {ID} is likely to accept the offer</span>"
+            message = f"Customer {ID} is likely to accept the offer"
         else:
-            message = f"<span class='negative'>Customer {ID} is likely to reject the offer</span>"
+            message = f"Customer {ID} is likely to reject the offer"
 
         # Display the customer's category
-        st.markdown(message, unsafe_allow_html=True)
+        st.markdown(
+            f"<div class='pred-output'>{message}</div>", unsafe_allow_html=True
+        )
 
         # get customer profile
         customer_profile(processed_df=df_processed, cleaned_df=df_clean)
