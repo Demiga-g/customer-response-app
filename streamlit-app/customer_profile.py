@@ -9,11 +9,21 @@ from util_funcs.pre_process import load_model, clean_form_data
 
 styling_pred_output = """
 <style>
-    .pred-output {
+    .positive {
         font-size: 20px;
         font-weight: bold;
         color: #4fc921;
         background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .negative {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e74311;
+        background-color: #ffeaea;
         padding: 10px;
         border-radius: 5px;
         text-align: center;
@@ -255,14 +265,15 @@ if submitted:
         # give prediction
         prediction = model.predict(df_clean.to_dict('records'))[0]
         if prediction == 1:
-            message = f"Customer {ID} is likely to accept the offer"
+            st.markdown(
+                f"<div class='positive'>Customer {ID} is likely to accept the offer</div>",
+                unsafe_allow_html=True,
+            )
         else:
-            message = f"Customer {ID} is likely to reject the offer"
-
-        # Display the customer's category
-        st.markdown(
-            f"<div class='pred-output'>{message}</div>", unsafe_allow_html=True
-        )
+            st.markdown(
+                f"<div class='negative'>Customer {ID} is likely to reject the offer</div>",
+                unsafe_allow_html=True,
+            )
 
         # get customer profile
         customer_profile(processed_df=df_processed, cleaned_df=df_clean)
