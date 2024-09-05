@@ -2,7 +2,7 @@ import streamlit as st
 
 st.markdown(
     """
-    <h1 style="color:#4fc921">iFood CRM App</h1>
+    <h1 style="color:#4fc921">iFood's Marketing Campaign App</h1>
     """,
     unsafe_allow_html=True,
 )
@@ -11,7 +11,7 @@ st.markdown(
     """
 ### About the App!
 
-This dummy application was developed to assist iFood's CRM team in improving the performance of
+This dummy application was developed to assist iFood's marketing team in improving the performance of
 their marketing campaigns.
 Faced with challenges in profit growth over the next three years, the company's marketing department
 was tasked with spending its budget more wisely.
