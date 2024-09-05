@@ -8,11 +8,11 @@ st.set_page_config(layout="wide")
 # Navigation setup
 pg = st.navigation(
     [
-        st.Page("home_page.py", title="About", icon="🧑‍🧑‍🧒‍🧒"),
+        st.Page("home_page.py", title="About", icon="🏠"),
         st.Page(
-            "customer_profile.py", title="Customer Profiling Toolkit", icon="🪪"
+            "customer_profile.py", title="Customer Profiling Toolkit", icon="👨‍🏫"
         ),
-        st.Page("file_upload.py", title="Batch Analysis Toolkit", icon="⛓️"),
+        st.Page("file_upload.py", title="Batch Analysis Toolkit", icon="📂"),
     ]
 )
 
