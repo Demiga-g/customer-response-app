@@ -20,7 +20,7 @@ direct marketing initiatives.
 
 ### Model Performance:
 
-- The model was able to correctly predict approximately 45 percent of clients who would
+- The models were able to correctly predict over 75 percent of clients who would
 accept an offer.
 - Additionally, the model achieved an overall accuracy of over 87 percent.
 
